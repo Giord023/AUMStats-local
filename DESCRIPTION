@@ -1,0 +1,14 @@
+Package: AUMStats
+Type: Package
+Title: Teaching statistics for AUM's Master's in I/O psychology program
+Version: 0.1.0
+Author: Casey Giordano
+Maintainer: Casey Giordano <cgiordan@aum.edu>
+Description: This package is a major resource for teaching statistics. 
+    This package contains datasets and tutorials that will help simplify 
+    learning R.
+License: MIT License
+Encoding: UTF-8
+LazyData: true
+Imports: tidyverse, learnr
+Suggests: 

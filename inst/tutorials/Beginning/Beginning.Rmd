@@ -1,0 +1,334 @@
+---
+title: "Beginning"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(knitr)
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Using R like a calculator
+
+*R is very versatile in its functionality but much of its usage in statistics is as a glorified calculator. The table below provides a list of the common operations used in R along with an example of their usage.*
+
+```{r}
+
+## List of operations
+Operator <- c("-", "+", "*", "/", "^", "sqrt()")
+
+## List of operation purposes
+Purpose <- c("Subtraction", "Addition", "Multiplication", "Division", "Exponent", "Square root")
+
+## Examples of usage
+Usage <- c("3 - 5", "7 + 2", "8 * 5", "2/ 6", "3^2", "sqrt(3)")
+
+## Stitch them together in a table
+OperatorTable <- data.frame(Operator, Purpose, Usage)
+
+## Print the table
+kable(OperatorTable)
+```
+
+
+### Addition
+
+*The grey box below is for entering code. By clicking 'run code' on the top-right of the box, it will execute the code to return the output.*
+
+Change the code in the code chunk below to add 3 and 5 together instead of 2 and 2:
+
+```{r two-plus-two, exercise=TRUE}
+2 + 2
+```
+
+### Example calculations
+
+*The code box below has 3 lines of code: division/fraction, square root, and multiplication. Each line of code, when executed, produces its own output on a different line.*
+
+Run the code below to see other forms of simple calculations in R:
+
+```{r example-calculations, exercise = TRUE}
+6 / 3
+sqrt(9)
+3 * 5
+```
+
+
+### Try it yourself
+
+Calculate 
+
+- 20 multiplied by 4
+
+- Square root of 36
+
+- 16 divided by 4
+
+
+```{r try-yourself, exercise = TRUE}
+
+```
+
+```{r try-yourself-solution}
+20 * 4
+sqrt(36)
+16 / 4
+```
+
+### Order of operations
+
+*R uses a common standard for its order of operations. To help remember it, use the  acronym* **PEMDAS**. *The highest priority is computations within parentheses, followed by computing exponents, multiplication and division are next and given equal preference, followed by addition and subtraction that are also given equal preference. *
+
+1) **P**arentheses: "()"
+
+2) **E**xponents: "^"
+
+3) **M**ultiplication and **D**ivision: "*" and "/"
+
+4) **A**ddition and **S**ubtraction: "+" and "-"
+
+Add parentheses to make this expression equal 32 instead of 23:
+
+```{r order-operations, exercise = TRUE}
+
+3 + 5 * 4
+
+```
+
+
+```{r order-operations-solution}
+
+(3 + 5) * 4
+
+```
+
+
+## Creating objects
+
+### Assigning data to objects
+
+*R is an object-oriented language, meaning that everything is stored as an object. Here we see the basics of creating and using objects. In the code box, we create an object named "Test" and we assign that object (using "<-") a value of 5. When we call the object "Test", it will return its contents (i.e., 5).*
+
+Run the code below to see what data are stored in the "Test" object:
+
+```{r assign-test, exercise=TRUE}
+Test <- 5
+Test
+```
+
+
+### Objects are case sensitive
+
+*When using objects, we must be careful about spelling them correctly!*
+
+Change the output below to return the contents of the object "TEST":
+
+```{r case-sensitive-object, exercise = TRUE}
+TEST <- 4 + 3
+test
+```
+
+### Object names must start with letters
+
+*Object names in R can be very flexible with only 1 rule: Object names MUST start with a letter. Numbers and special characters (underscore, period) can be used after that.*
+
+Run the code chunks below to see examples of permissible object names:
+
+```{r object1, exercise = TRUE}
+Test1 <- sqrt(25)
+Test1
+```
+
+```{r object2, exercise = TRUE}
+Object2 <- 18 / 3
+Object2
+```
+
+```{r object3, exercise = TRUE}
+Test.Object <- 18 / 3
+Test.Object
+```
+
+The "1Broken" object name returns an error because we cannot start an object name with a number.
+
+```{r object4, exercise = TRUE}
+1Broken <- 18 / 3
+1Broken
+```
+
+### Create your own object
+
+Create the object **MyFirstObject** that is assigned the value of 934. Call the object on a new line to ensure the output is correct (see the 'hint' if you are stuck:
+
+```{r create-own-object, exercise = TRUE, exercise.eval = TRUE}
+
+```
+
+
+```{r create-own-object-hint}
+MyFirstObject <- 934
+MyFirstObject
+```
+
+### Objects can be overwritten
+
+*An object can be overwritten and there is no 'undo' button to fix it (other than re-running previous code chunks). In the code chunk below, the object "a" is changed to contain a different value because we use the assign (i.e., <-) operator to store new data in the object.*
+
+Run the code chunk to see how the object "a" changes:
+
+```{r overwrite-objects, exercise = TRUE}
+a <- 3
+a
+
+a <- a + 3
+a
+
+```
+
+### Objects can be re-used
+
+*Why use objects? Because we can store them and use them several times for ease! For example, we can see the total cost by multiplying the number of items by a fixed price.*
+
+If each unit costs $5.99, how much does it cost us to buy 35 units? 
+```{r cost-objects, exercise = TRUE, exercise.eval = TRUE}
+
+Units <- 2
+
+Cost <- 5.99 * Units
+
+Cost
+```
+
+```{r cost-objects-hint}
+Units <- 35
+
+Cost <- 5.99 * Units
+
+Cost
+```
+
+### Quiz
+
+Some questions to verify that you understand the basic use of objects in R:
+
+```{r quiz}
+quiz(
+  question("How do we assign data to an object?",
+    answer("<-", correct = TRUE),
+    answer("\\--"),
+    answer("+"),
+    answer("<")
+  ),
+  question("Object names CANNOT start with which of the following characters?",
+    answer("Letter"),
+    answer("Period (.)"),
+    answer("Number", correct = TRUE),
+    answer("Underscore (_)")
+  )
+)
+```
+
+## Understanding functions
+
+*R and other programs, like Python and Excel, make use of functions. Functions take specific inputs and does something specific to those inputs. We have already used some functions, such as the square root 'sqrt' function.*
+
+*Functions have two elements to consider: arguments and default values. All functions include arguments that help tell the function the inputs and potentially change what a function even does. The 'round()' function will round the numeric value specified by the argument _x_ to the number of digits specified by the argument _digits_.*
+
+Things to remember:
+
+- Function and argument names are case sensitive.
+
+- Many arguments have default values, when arguments are not specified, the defaults will be used. 
+
+- Arguments are sometimes limited to certain kinds of inputs. For example, you cannot take the square root of a word, you can only square root a number! 
+
+### Arguments of a function
+
+*Here, we will practice changing the inputs to two arguments in the round() function. The argument name "x" tells the function the numeric value we wish to round whereas the argument name "digits" tells the function how many decimal places to round the number.*
+
+Change the code chunk below to round the value of **3.14165** to **3** digits:
+
+
+```{r func-pi-round, exercise = TRUE, exercise.eval = TRUE}
+
+round(x = 3.14165, digits = 2)
+
+```
+
+```{r func-pi-round-solution}
+
+round(x = 3.14165, digits = 3)
+
+```
+
+Change the code chunk below to round the number **2.182818287** to **4** digits:
+
+```{r func-e-round, exercise = TRUE}
+
+round(x = 3.14165, digits = 4)
+
+```
+
+```{r func-e-round-solution}
+
+round(x = 2.182818287, digits = 4)
+
+```
+
+Run the code below to see how many decimal places are included in the default for the digits argument of the round function: 
+
+```{r func-round, exercise = TRUE}
+round(x = 2.182818287)
+```
+
+### Calling functions is "smart"
+
+*The names of arguments do not always need to be specified, _although it is good practice to always specify argument names_.*
+
+**Note that this does not work well in functions with many arguments.**
+
+Run the code chunk below to show that the round functions works even when we fail to specify the "x = " and "digits = " argument names:
+
+```{r arg-missing, exercise = TRUE}
+round(x = 2.182818287, digits = 2)
+round(2.182818287, 2)
+```
+
+
+### Functions within functions
+
+*Sometimes it can be useful to put functions inside functions.*
+
+Using the sqrt(29) function inside the round() function, round the **square root of 29** to **5** digits: 
+
+```{r func-in-func, exercise = TRUE}
+
+```
+
+
+```{r func-in-func-solution}
+round(x = sqrt(29), digits = 5)
+```
+
+### Objects as argument inputs
+
+*Sometimes we want to apply a function to an object because the object might change. Here, we can create an object then specify that object as the argument for a function.*
+
+1) Create an object named **MyNumber** that is assigned the value of **17 divided by 4**.
+
+2) Use the round() function to round the **MyNumber** object to **1** digits. 
+
+```{r obj-in-func, exercise = TRUE}
+
+```
+
+```{r obj-in-func-solution}
+MyNumber <- 17 / 4
+round(x = MyNumber, digits = 1)
+```
+
+
+
+

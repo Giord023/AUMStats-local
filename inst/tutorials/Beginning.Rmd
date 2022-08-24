@@ -1,0 +1,159 @@
+---
+title: "Tutorial"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Using R like a calculator
+
+### Addition
+
+*The grey box below is for entering code. By clicking 'run code' on the top-right of the box, it will execute the code to return the output.*
+
+The code below will add 2 and 2 together. Change the code to add 3 and 5:
+
+```{r two-plus-two, exercise=TRUE}
+2 + 2
+```
+
+### Try other simple calculations
+
+*The code box below has 3 lines of code: division/fraction, square root, and multiplication. Each line of code, when executed, produces its own output on a different line.*
+
+Run the code below to see other forms of simple calculations in R:
+
+```{r add-function, exercise=TRUE}
+6 / 3
+sqrt(9)
+3 * 5
+```
+
+## Creating objects
+
+### Assigning data to objects
+
+*R is an object-oriented language, meaning that everything is stored as an object. Here we see the basics of creating and using objects. In the code box, we create an object named "Test" and we assign that object (using "<-") a value of 5. When we call the object "Test", it will return its contents (i.e., 5).*
+
+Run the code below to see what data are stored in the "Test" object:
+
+```{r assign-test, exercise=TRUE}
+Test <- 5
+Test
+```
+
+
+### Objects are case sensitive
+
+*When using objects, we must be careful about spelling them correctly!*
+
+Change the output below to return the contents of the object "TEST":
+
+```{r case-sensitive-object, exercise = TRUE}
+TEST <- 4 + 3
+test
+```
+
+### Object names must start with letters
+
+*Object names in R can be very flexible with only 1 rule: Object names MUST start with a letter. Numbers and special characters (underscore, period) can be used after that.*
+
+Run the code chunks below to see examples of permissible object names:
+
+```{r object1, exercise = TRUE}
+Test1 <- sqrt(25)
+Test1
+```
+
+```{r object2, exercise = TRUE}
+Object2 <- 18 / 3
+Object2
+```
+
+```{r object3, exercise = TRUE}
+Test.Object <- 18 / 3
+Test.Object
+```
+
+The "1Broken" object name returns an error because we cannot start an object name with a number.
+
+```{r object4, exercise = TRUE}
+1Broken <- 18 / 3
+1Broken
+```
+
+### Create your own object
+
+Create the object **MyFirstObject** that is assigned the value of 934. Call the object on a new line to ensure the output is correct (see the 'hint' if you are stuck:
+
+```{r create-own-object, exercise = TRUE, exercise.eval = TRUE}
+
+```
+
+
+```{r create-own-object-hint}
+MyFirstObject <- 934
+MyFirstObject
+```
+
+### Objects can be overwritten
+
+*An object can be overwritten and there is no 'undo' button to fix it (other than re-running previous code chunks). In the code chunk below, the object "a" is changed to contain a different value because we use the assign (i.e., <-) operator to store new data in the object.*
+
+Run the code chunk to see how the object "a" changes:
+
+```{r overwrite-objects, exercise = TRUE}
+a <- 3
+a
+
+a <- a + 3
+a
+
+```
+
+### Objects can be re-used
+
+*Why use objects? Because we can store them and use them several times for ease! For example, we can see the total cost by multiplying the number of items by a fixed price.*
+
+If each unit costs $5.99, how much does it cost us to buy 35 units? 
+```{r cost-objects, exercise = TRUE, exercise.eval = TRUE}
+
+Units <- 2
+
+Cost <- 5.99 * Units
+
+Cost
+```
+
+```{r cost-objects-hint}
+Units <- 35
+
+Cost <- 5.99 * Units
+
+Cost
+```
+
+### Quiz
+
+Some questions to verify that you understand the basic use of objects in R:
+
+```{r quiz}
+quiz(
+  question("How do we assign data to an object?",
+    answer("<-", correct = TRUE),
+    answer("\\--"),
+    answer("+"),
+    answer("<")
+  ),
+  question("Object names CANNOT start with which of the following characters?",
+    answer("Letter"),
+    answer("Period (.)"),
+    answer("Number", correct = TRUE),
+    answer("Underscore (_)")
+  )
+)
+```
